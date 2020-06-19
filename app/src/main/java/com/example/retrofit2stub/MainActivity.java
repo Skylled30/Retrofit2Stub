@@ -7,6 +7,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -21,9 +24,12 @@ public class MainActivity extends AppCompatActivity {
 
     String API_URL = "https://pixabay.com/";
     String q = "bad dog";
-    String key = "16115131-f2ac4e59ef4204b7d06f11215";
+    String key = "17118394-b181f35df73c02c10fba3c1b4";
     String image_type = "photo";
     Picasso picasso;
+    ListView listView;
+    PictureListAdapter adapter;
+    Spinner spinner;
 
     interface PixabayAPI {
         @GET("/api") // метод запроса (POST/GET) и путь к API
@@ -36,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         picasso = new Picasso.Builder(this).build();
+        listView = findViewById(R.id.list);
+        spinner = findViewById(R.id.spinner);
     }
 
     public void startSearch(String text) {
@@ -77,15 +85,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void displayResults(Hit[] hits) {
         // вызывается, когда появятся результаты поиска
-        ImageView iv = findViewById(R.id.image);
-        picasso.load(hits[0].previewURL).into(iv);
-
-
+        adapter = new PictureListAdapter(this, hits);
+        listView.setAdapter(adapter);
     }
 
     public void onSearchClick(View v) {
         EditText etSearch = findViewById(R.id.text);
         String text = etSearch.getText().toString();
+        image_type = spinner.getSelectedItem().toString();
         startSearch(text);
 
     }

@@ -13,16 +13,23 @@
         android:id="@+id/text"
         android:text="dogs and people"
         android:textSize="30sp" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/image_type"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:onClick="onSearchClick"
         android:text="Search" />
-    <ImageView
+
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/image"
-        android:padding="5dp" />
+        android:id="@+id/list"/>
 
 </LinearLayout>

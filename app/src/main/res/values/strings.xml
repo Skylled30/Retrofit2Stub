@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Retrofit2Stub</string>
+    <string-array name="image_type">
+        <item>all</item>
+        <item>photo</item>
+        <item>illustration</item>
+        <item>vector</item>
+    </string-array>
 </resources>
